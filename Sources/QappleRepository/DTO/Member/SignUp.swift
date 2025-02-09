@@ -17,4 +17,16 @@ public struct SignUpRequest: Encodable {
     public let email: String
     public let nickname: String
     public let deviceToken: String
+    
+    public init(
+        signUpToken: String,
+        email: String,
+        nickname: String,
+        deviceToken: String
+    ) {
+        self.signUpToken = signUpToken
+        self.email = email
+        self.nickname = nickname
+        self.deviceToken = deviceToken
+    }
 }
