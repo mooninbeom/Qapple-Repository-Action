@@ -7,7 +7,7 @@
 
 import Testing
 import Foundation
-@testable import Qapple_Repository
+@testable import QappleRepository
 
 struct SecretTests {
     

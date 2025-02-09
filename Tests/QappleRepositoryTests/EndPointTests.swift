@@ -7,13 +7,13 @@
 
 import Testing
 import Foundation
-@testable import Qapple_Repository
+@testable import QappleRepository
 
 struct EndPointTests {
     
     @Test
     func example() async throws {
-        let response = try await AnswerRepository.fetchAnswerListOfMine(
+        let response = try await AnswerAPI.fetchListOfMine(
             threshold: 0,
             pageSize: 25,
             server: .test,
