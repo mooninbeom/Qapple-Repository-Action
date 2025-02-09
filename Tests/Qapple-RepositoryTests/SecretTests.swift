@@ -1,5 +1,5 @@
 //
-//  SecretsTest.swift
+//  SecretTests.swift
 //  Qapple-Repository
 //
 //  Created by 김민준 on 2/9/25.
@@ -9,17 +9,17 @@ import Testing
 import Foundation
 @testable import Qapple_Repository
 
-struct SecretsTest {
+struct SecretTests {
     
     @Test
     func productionServerURL() throws {
-        let url = try BaseURL.fetch(from: .production)
-        print(url)
+        let url = BaseURL.fetch(from: .production)
+        #expect(url != "HOST URL ERROR")
     }
     
     @Test
     func testServerURL() throws {
-        let url = try BaseURL.fetch(from: .test)
-        print(url)
+        let url = BaseURL.fetch(from: .test)
+        #expect(url != "HOST URL ERROR")
     }
 }

@@ -9,5 +9,7 @@ import Foundation
 
 /// Repository 에러 열거형
 enum RepositoryError: Error {
+    
+    /// 기본 URL 에러
     case invalidBaseUrl(String)
 }
