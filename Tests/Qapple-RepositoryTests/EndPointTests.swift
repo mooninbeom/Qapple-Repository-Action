@@ -12,8 +12,13 @@ import Foundation
 struct EndPointTests {
     
     @Test
-    func example() throws {
-        let url = try QappleAPI.Answer.post(questionId: 0).url()
-        print(url)
+    func example() async throws {
+        let response = try await AnswerRepository.fetchAnswerListOfMine(
+            threshold: 0,
+            pageSize: 25,
+            server: .test,
+            accessToken: ""
+        )
+        dump(response)
     }
 }

@@ -11,7 +11,7 @@ import Foundation
 protocol API {
     
     /// 기본 Base URL
-    static var baseUrl: URL? { get }
+    static var basePath: String { get }
     
     /// BaseString과 URLQuery를 이어 붙여 URLString을 반환합니다.
     func appending(baseString: String?, urlQueryItems: [APIQuery]) -> String
@@ -48,9 +48,13 @@ extension RawRepresentable where RawValue == String, Self: API {
     init?(rawValue: String) { nil }
     
     /// 원시값을 이용해 URL 타입으로 변환 후 반환합니다.
-    func url() throws -> URL {
-        guard let baseUrl = Self.baseUrl,
-              let url = URL(string: baseUrl.absoluteString + rawValue) else {
+    func url(from server: Server) throws -> URL {
+        let baseURLString = BaseURL.fetch(from: server)
+        guard let baseURL = URL(string: baseURLString)?
+            .appendingPathComponent(Self.basePath) else {
+            throw RepositoryError.invalidBaseUrl("BaseURL Error: \(baseURLString)")
+        }
+        guard let url = URL(string: baseURL.absoluteString + rawValue) else {
             throw RepositoryError.invalidBaseUrl("RawValue Error: \(rawValue)")
         }
         return url
