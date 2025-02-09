@@ -12,7 +12,7 @@ public struct SignUp: Decodable, Sendable {
     public let refreshToken: String?
 }
 
-public struct SignUpRequest: Encodable {
+public struct SignUpRequest: Encodable, Sendable {
     public let signUpToken: String
     public let email: String
     public let nickname: String

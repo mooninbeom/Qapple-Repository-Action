@@ -30,7 +30,7 @@ enum NetworkService {
     }
     
     /// POST 요청을 수행합니다.
-    static func post<T: Decodable, U: Encodable>(url: URL, body: U, accessToken: String) async throws -> T {
+    static func post<T: Decodable, U: Encodable>(url: URL, body: U, accessToken: String = "") async throws -> T {
         let (data, response) = try await request(url: url, body: body, method: .POST, accessToken: accessToken)
         return try decodeResponse(data: data, response: response)
     }
@@ -104,8 +104,6 @@ extension NetworkService {
         }
     }
 }
-
-
 
 // MARK: - Decoding
 

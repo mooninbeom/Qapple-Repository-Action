@@ -22,6 +22,6 @@ public enum MemberAPI: Sendable {
         server: Server
     ) async throws -> SignUp {
         let url = try QappleAPI.Member.signUp.url(from: server)
-        return try await NetworkService.post(url: url, body: request, accessToken: "")
+        return try await NetworkService.post(url: url, body: request)
     }
 }
