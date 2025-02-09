@@ -5,6 +5,10 @@ import PackageDescription
 
 let package = Package(
     name: "Qapple-Repository",
+    platforms: [
+        .macOS(.v15),
+        .iOS(.v17),
+    ],
     products: [
         .library(
             name: "Qapple-Repository",
