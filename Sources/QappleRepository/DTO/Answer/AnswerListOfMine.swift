@@ -8,14 +8,14 @@
 import Foundation
 
 public struct AnswerListOfMine: Decodable {
-    let total: Int?
-    let size: Int
-    let content: [Content]
-    let numberOfElements: Int
-    let threshold: String
-    let hasNext: Bool
+    public let total: Int?
+    public let size: Int
+    public let content: [Content]
+    public let numberOfElements: Int
+    public let threshold: String
+    public let hasNext: Bool
     
-    struct Content: Codable, Hashable {
+    public struct Content: Codable, Hashable {
         let questionId: Int
         let answerId: Int
         let writerId: Int

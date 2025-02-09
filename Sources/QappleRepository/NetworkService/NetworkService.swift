@@ -8,9 +8,7 @@
 import Foundation
 
 /// 네트워킹을 수행할 클라이언트 객체
-struct NetworkService {
-    
-    private init() {}
+enum NetworkService {
     
     static let decoder = JSONDecoder()
     static let encoder = JSONEncoder()
@@ -94,14 +92,20 @@ extension NetworkService {
         let statusCode = statusCode(response)
         let successStatusCodeRange = 200...299
         guard successStatusCodeRange.contains(statusCode) else {
+            let failedResponse = try? decoder.decode(
+                NetworkError.FailedResponse.self,
+                from: data
+            )
             throw NetworkError.invalidResponse(
                 urlString: response.url?.absoluteString ?? "",
                 statusCode: statusCode,
-                message: nil
+                message: failedResponse?.message ?? "에러 메시지 없음"
             )
         }
     }
 }
+
+
 
 // MARK: - Decoding
 

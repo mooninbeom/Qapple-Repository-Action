@@ -54,14 +54,34 @@ enum QappleAPI {
     enum Member: RawRepresentable, API {
         static let basePath = "members"
         
+        /// 회원가입 인증메일 발송
         case certification(signUpToken: String, email: String)
+        
+        /// 회원가입 인증코드 인증
         case certificationCodeCheck(signUpToken: String, email: String, certCode: String)
+        
+        /// 이메일 중복 체크
         case check(email: String)
+        
+        /// 테스트용 로컬 로그인
+        case localSignIn
+        
+        /// 마이페이지 프로필 조회
         case myPage
+        
+        /// 마이페이지 프로필 수정
         case myPageEdit
+        
+        /// 닉네임 중복 체크
         case nicknameCheck(nickname: String)
+        
+        /// 회원탈퇴
         case resign
+        
+        /// 로그인
         case signIn(code: String, deviceToken: String)
+        
+        /// 회원가입
         case signUp
         
         var rawValue: RawValue {
@@ -82,6 +102,12 @@ enum QappleAPI {
             case let .check(email):
                 appending(baseString: "email/check", urlQueryItems: [
                     .init(key: "email", value: email)
+                ])
+                
+            case .localSignIn:
+                appending(baseString: "local-sign-in", urlQueryItems: [
+                    .init(key: "testId", value: "QAPPLE_API_TEST_\(Date.now.description)"),
+                    .init(key: "deviceToken", value: "TEST_DEVICE_TOKEN")
                 ])
                 
             case .myPage:

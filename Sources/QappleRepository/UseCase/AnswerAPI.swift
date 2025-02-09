@@ -7,12 +7,11 @@
 
 import Foundation
 
-enum AnswerAPI {
+/// 답변 API
+public enum AnswerAPI {
     
     /// 작성한 답변 조회 API 입니다.
-    ///
-    /// 첫 번째 조회 시 threshold를 비워 보내고, 이후 조회 시 앞선 조회의 반환값으로 받은 threshold를 보내주세요.
-    static func fetchListOfMine(
+    public static func fetchListOfMine(
         threshold: Int?,
         pageSize: Int32,
         server: Server,

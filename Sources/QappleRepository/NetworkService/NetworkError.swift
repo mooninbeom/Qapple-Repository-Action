@@ -14,8 +14,13 @@ enum NetworkError: Error {
     case urlRequestFailure(urlString: String)
     
     /// 유효하지 않은 Response입니다.
-    case invalidResponse(urlString: String, statusCode: Int, message: String?)
+    case invalidResponse(urlString: String, statusCode: Int, message: String)
     
     /// Decoding에 실패했습니다.
     case decodingFailure(type: Decodable.Type)
+    
+    /// 실패 Response
+    struct FailedResponse: Decodable {
+        let message: String
+    }
 }
