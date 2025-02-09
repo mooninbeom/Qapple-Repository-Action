@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct SignUp: Decodable {
+public struct SignUp: Decodable, Sendable {
     public let accessToken: String?
     public let refreshToken: String?
 }

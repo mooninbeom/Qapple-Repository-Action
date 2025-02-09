@@ -8,7 +8,7 @@
 import Foundation
 
 /// Repository를 호출할 Server
-public enum Server: String {
+public enum Server: String, Sendable {
     
     /// 운영 서버
     case production

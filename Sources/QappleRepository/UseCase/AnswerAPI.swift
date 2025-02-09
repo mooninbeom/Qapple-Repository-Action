@@ -8,7 +8,7 @@
 import Foundation
 
 /// 답변 API
-public enum AnswerAPI {
+public enum AnswerAPI: Sendable {
     
     /// 작성한 답변 조회 API 입니다.
     public static func fetchListOfMine(

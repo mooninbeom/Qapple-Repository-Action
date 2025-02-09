@@ -7,6 +7,6 @@
 
 import Foundation
 
-public struct LocalSignIn: Decodable {
+public struct LocalSignIn: Decodable, Sendable {
     public let refreshToken: String
 }

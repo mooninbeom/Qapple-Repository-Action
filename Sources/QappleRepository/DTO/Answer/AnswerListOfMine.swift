@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AnswerListOfMine: Decodable {
+public struct AnswerListOfMine: Decodable, Sendable {
     public let total: Int?
     public let size: Int
     public let content: [Content]
@@ -15,7 +15,7 @@ public struct AnswerListOfMine: Decodable {
     public let threshold: String
     public let hasNext: Bool
     
-    public struct Content: Codable, Hashable {
+    public struct Content: Codable, Hashable, Sendable {
         let questionId: Int
         let answerId: Int
         let writerId: Int

@@ -8,7 +8,7 @@
 import Foundation
 
 /// 멤버 API
-public enum MemberAPI {
+public enum MemberAPI: Sendable {
     
     /// 테스트용 로컬 로그인 API 입니다.
     public static func localSignIn(server: Server) async throws -> LocalSignIn {

@@ -8,7 +8,7 @@
 import Foundation
 
 /// 페이지네이션 정보 구조체
-public struct PaginationInfo: Equatable {
+public struct PaginationInfo: Equatable, Sendable {
     public var threshold: String
     public var hasNext: Bool
 }
