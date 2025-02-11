@@ -4,18 +4,22 @@
 import PackageDescription
 
 let package = Package(
-    name: "Qapple-Repository",
+    name: "QappleRepository",
+    platforms: [
+        .macOS(.v15),
+        .iOS(.v17),
+    ],
     products: [
         .library(
-            name: "Qapple-Repository",
-            targets: ["Qapple-Repository"]),
+            name: "QappleRepository",
+            targets: ["QappleRepository"]),
     ],
     targets: [
         .target(
-            name: "Qapple-Repository"),
+            name: "QappleRepository"),
         .testTarget(
-            name: "Qapple-RepositoryTests",
-            dependencies: ["Qapple-Repository"]
+            name: "QappleRepositoryTests",
+            dependencies: ["QappleRepository"]
         ),
     ]
 )
