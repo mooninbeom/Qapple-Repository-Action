@@ -16,14 +16,14 @@ public struct AnswerListOfMine: Decodable, Sendable {
     public let hasNext: Bool
     
     public struct Content: Codable, Hashable, Sendable {
-        let questionId: Int
-        let answerId: Int
-        let writerId: Int
-        let nickname: String
-        let profileImage: String?
-        let content: String
-        let heartCount: Int
-        let writeAt: String
-        let isLiked: Bool
+        public let questionId: Int
+        public let answerId: Int
+        public let writerId: Int
+        public let nickname: String
+        public let profileImage: String?
+        public let content: String
+        public let heartCount: Int
+        public let writeAt: String
+        public let isLiked: Bool
     }
 }
