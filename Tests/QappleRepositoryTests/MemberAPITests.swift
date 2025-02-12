@@ -13,16 +13,24 @@ struct MemberAPITests {
     
     @Test
     func localSignIn() async throws {
-        let response = try await MemberAPI.localSignIn(server: .test)
+        let response = try await MemberAPI.localSignIn(
+            testId: "TEST_ID_\(Date.now.description)",
+            deviceToken: "TEST_DEVICE_TOKEN",
+            server: .test
+        )
         dump(response)
     }
     
     @Test
     func localSignUp() async throws {
-        let signUpToken = try await MemberAPI.localSignIn(server: .test).refreshToken
+        let refreshToken = try await MemberAPI.localSignIn(
+            testId: "TEST_ID_\(Date.now.description)",
+            deviceToken: "TEST_DEVICE_TOKEN",
+            server: .test
+        ).refreshToken
         let response = try await MemberAPI.signUp(
             request: .init(
-                signUpToken: signUpToken,
+                signUpToken: refreshToken,
                 email: "email",
                 nickname: "nickname",
                 deviceToken: "deviceToken"

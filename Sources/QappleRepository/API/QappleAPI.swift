@@ -22,9 +22,9 @@ enum QappleAPI {
         static let basePath = "answers"
         
         case listOfMine(threshold: Int?, pageSize: Int32 = 25)
-        case delete(answerId: Int)
-        case listOfQuestion(questionId: Int, threshold: String?, pageSize: Int32 = 25)
-        case post(questionId: Int)
+        case delete(answerId: Int64)
+        case listOfQuestion(questionId: Int64, threshold: String?, pageSize: Int32 = 25)
+        case create(questionId: Int64)
         
         var rawValue: RawValue {
             switch self {
@@ -43,7 +43,7 @@ enum QappleAPI {
                     .init(key: "pageSize", value: pageSize),
                 ])
                 
-            case let .post(questionId):
+            case let .create(questionId):
                 appending(baseString: "question/\(questionId)")
             }
         }
@@ -64,7 +64,7 @@ enum QappleAPI {
         case check(email: String)
         
         /// 테스트용 로컬 로그인
-        case localSignIn
+        case localSignIn(testId: String, deviceToken: String)
         
         /// 마이페이지 프로필 조회
         case myPage
@@ -104,10 +104,10 @@ enum QappleAPI {
                     .init(key: "email", value: email)
                 ])
                 
-            case .localSignIn:
+            case let .localSignIn(testId, deviceToken):
                 appending(baseString: "local-sign-in", urlQueryItems: [
-                    .init(key: "testId", value: "QAPPLE_API_TEST_\(Date.now.description)"),
-                    .init(key: "deviceToken", value: "TEST_DEVICE_TOKEN")
+                    .init(key: "testId", value: testId),
+                    .init(key: "deviceToken", value: deviceToken)
                 ])
                 
             case .myPage:
