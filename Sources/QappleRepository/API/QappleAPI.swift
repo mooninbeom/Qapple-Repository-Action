@@ -206,7 +206,7 @@ enum QappleAPI {
     enum BoardComment: RawRepresentable, API {
         static let basePath = "board-comments"
         
-        case list(boardId: Int64, threshold: Int64?, pageSize: Int32 = 25)
+        case list(boardId: Int64, threshold: Int?, pageSize: Int32 = 25)
         case delete(commentId: Int64)
         case create(boardId: Int64)
         case like(commentId: Int64)
