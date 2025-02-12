@@ -143,10 +143,10 @@ enum QappleAPI {
         static let basePath = "boards"
         
         case list(threshold: Int?, pageSize: Int32 = 25)
-        case post
-        case single(boardId: Int)
-        case delete(boardId: Int)
-        case like(boardId: Int)
+        case create
+        case single(boardId: Int64)
+        case delete(boardId: Int64)
+        case like(boardId: Int64)
         case search(keyword: String?, threshold: Int?, pageSize: Int32 = 25)
         
         var rawValue: RawValue {
@@ -157,7 +157,7 @@ enum QappleAPI {
                     .init(key: "pageSize", value: pageSize),
                 ])
                 
-            case .post:
+            case .create:
                 appending()
                 
             case let .single(boardId):
