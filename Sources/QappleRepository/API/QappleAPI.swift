@@ -67,10 +67,10 @@ enum QappleAPI {
         case localSignIn
         
         /// 마이페이지 프로필 조회
-        case myPage
+        case profile
         
         /// 마이페이지 프로필 수정
-        case myPageEdit
+        case profileEdit
         
         /// 닉네임 중복 체크
         case nicknameCheck(nickname: String)
@@ -110,10 +110,10 @@ enum QappleAPI {
                     .init(key: "deviceToken", value: "TEST_DEVICE_TOKEN")
                 ])
                 
-            case .myPage:
+            case .profile:
                 appending(baseString: "mypage")
                 
-            case .myPageEdit:
+            case .profileEdit:
                 appending(baseString: "mypage")
                 
             case let .nicknameCheck(nickname):
@@ -206,10 +206,10 @@ enum QappleAPI {
     enum BoardComment: RawRepresentable, API {
         static let basePath = "board-comments"
         
-        case list(boardId: Int, threshold: Int?, pageSize: Int32 = 25)
-        case delete(commentId: Int)
-        case post(boardId: Int)
-        case like(commentId: Int)
+        case list(boardId: Int64, threshold: Int64?, pageSize: Int32 = 25)
+        case delete(commentId: Int64)
+        case create(boardId: Int64)
+        case like(commentId: Int64)
         
         var rawValue: RawValue {
             switch self {
@@ -222,7 +222,7 @@ enum QappleAPI {
             case let .delete(commentId):
                 appending(baseString: "\(commentId)")
                 
-            case let .post(boardId):
+            case let .create(boardId):
                 appending(baseString: "board/\(boardId)")
                 
             case let .like(commentId):
