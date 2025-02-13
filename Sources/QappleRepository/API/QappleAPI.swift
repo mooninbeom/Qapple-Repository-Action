@@ -64,13 +64,13 @@ enum QappleAPI {
         case check(email: String)
         
         /// 테스트용 로컬 로그인
-        case localSignIn
+        case localSignIn(testId: String, deviceToken: String)
         
         /// 마이페이지 프로필 조회
         case profile
         
         /// 마이페이지 프로필 수정
-        case profileEdit
+        case updateProfile
         
         /// 닉네임 중복 체크
         case nicknameCheck(nickname: String)
@@ -104,16 +104,16 @@ enum QappleAPI {
                     .init(key: "email", value: email)
                 ])
                 
-            case .localSignIn:
+            case let .localSignIn(testId, deviceToken):
                 appending(baseString: "local-sign-in", urlQueryItems: [
-                    .init(key: "testId", value: "QAPPLE_API_TEST_\(Date.now.description)"),
-                    .init(key: "deviceToken", value: "TEST_DEVICE_TOKEN")
+                    .init(key: "testId", value: testId),
+                    .init(key: "deviceToken", value: deviceToken)
                 ])
                 
             case .profile:
                 appending(baseString: "mypage")
                 
-            case .profileEdit:
+            case .updateProfile:
                 appending(baseString: "mypage")
                 
             case let .nicknameCheck(nickname):
