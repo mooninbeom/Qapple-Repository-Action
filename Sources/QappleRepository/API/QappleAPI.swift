@@ -185,7 +185,7 @@ enum QappleAPI {
         static let basePath = "questions"
         
         case listOfMain
-        case list(threshold: String?, pageSize: Int32 = 25)
+        case list(threshold: Int?, pageSize: Int32 = 25)
         
         var rawValue: RawValue {
             switch self {
@@ -197,6 +197,27 @@ enum QappleAPI {
                     .init(key: "threshold", value: threshold),
                     .init(key: "pageSize", value: pageSize),
                 ])
+            }
+        }
+    }
+    
+    // MARK: - Admin Question
+    
+    enum AdminQuestion: RawRepresentable, API {
+        static let basePath = "admin/questions"
+        
+        case createQuestion
+        case deleteQuestion(questionId: Int64)
+        case uploadCSV
+        
+        var rawValue: RawValue {
+            switch self {
+            case .createQuestion:
+                appending()
+            case .deleteQuestion(let questionId):
+                appending(baseString: "\(questionId)")
+            case .uploadCSV:
+                appending(baseString: "upload/csv")
             }
         }
     }
