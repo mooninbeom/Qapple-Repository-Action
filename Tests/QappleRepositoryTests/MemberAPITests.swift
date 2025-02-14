@@ -42,7 +42,6 @@ struct MemberAPITests {
     
     @Test("회원가입 인증메일 발송 테스트")
     func sendCertificationEmail() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
         let refreshToken = try await MemberAPI.localSignIn(
             testId: "TEST_ID_\(Date.now.description)",
             deviceToken: "TEST_DEVICE_TOKEN",
@@ -51,15 +50,13 @@ struct MemberAPITests {
         let response = try await MemberAPI.sendCertificationEmail(
             signUpToken: refreshToken,
             email: "test@pos.idserve.net",
-            server: .test,
-            accessToken: accessToken
+            server: .test
         )
         dump(response)
     }
     
     @Test("회원가입 인증코드 확인 테스트")
     func checkAuthCode() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
         let refreshToken = try await MemberAPI.localSignIn(
             testId: "TEST_ID_\(Date.now.description)",
             deviceToken: "TEST_DEVICE_TOKEN",
@@ -69,8 +66,7 @@ struct MemberAPITests {
             signUpToken: refreshToken,
             email: "test@pos.idserve.net",
             certCode: "123456",
-            server: .test,
-            accessToken: accessToken
+            server: .test
         )
         dump(response)
     }
@@ -100,7 +96,7 @@ struct MemberAPITests {
     func updateProfile() async throws {
         let accessToken = try await TestHelper.shared.testToken()
         let response = try await MemberAPI.updateProfile(
-            nickname: "UpdatedUser",
+            nickname: "User\(Int.random(in: 1...100))",
             profileImage: nil,
             server: .test,
             accessToken: accessToken

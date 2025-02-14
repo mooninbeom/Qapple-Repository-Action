@@ -26,9 +26,6 @@ enum NetworkService {
     /// GET 요청을 수행합니다.
     static func get<T: Decodable>(url: URL, accessToken: String) async throws -> T {
         let (data, response) = try await request(url: url, method: .GET, accessToken: accessToken)
-        if let jsonString = String(data: data, encoding: .utf8) {
-            print("서버 응답: \(jsonString)")
-        }
         return try decodeResponse(data: data, response: response)
     }
     

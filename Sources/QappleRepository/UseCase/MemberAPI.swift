@@ -59,17 +59,15 @@ public enum MemberAPI: Sendable {
     public static func sendCertificationEmail(
         signUpToken: String,
         email: String,
-        server: Server,
-        accessToken: String
+        server: Server
     ) async throws -> Bool {
         let url = try QappleAPI.Member.certification(
             signUpToken: signUpToken,
             email: email
         ).url(from: server)
         
-        return try await NetworkService.get(
-            url: url,
-            accessToken: accessToken
+        return try await NetworkService.signIn(
+            url: url
         )
     }
     
@@ -78,8 +76,7 @@ public enum MemberAPI: Sendable {
         signUpToken: String,
         email: String,
         certCode: String,
-        server: Server,
-        accessToken: String
+        server: Server
     ) async throws -> Bool {
         let url = try QappleAPI.Member.certificationCodeCheck(
             signUpToken: signUpToken,
@@ -87,9 +84,8 @@ public enum MemberAPI: Sendable {
             certCode: certCode
         ).url(from: server)
         
-        return try await NetworkService.get(
-            url: url,
-            accessToken: accessToken
+        return try await NetworkService.signIn(
+            url: url
         )
     }
     
