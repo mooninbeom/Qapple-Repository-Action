@@ -25,13 +25,13 @@ enum QappleAPI {
         case listOfMine(threshold: Int?, pageSize: Int32 = 25)
         
         /// 답변 삭제
-        case delete(answerId: Int)
+        case delete(answerId: Int64)
         
         /// 질문에 대한 답변 조회
-        case listOfQuestion(questionId: Int, threshold: String?, pageSize: Int32 = 25)
+        case listOfQuestion(questionId: Int64, threshold: String?, pageSize: Int32 = 25)
         
         /// 답변 생성
-        case create(questionId: Int)
+        case create(questionId: Int64)
         
         var rawValue: RawValue {
             switch self {
@@ -151,18 +151,18 @@ enum QappleAPI {
         
         /// 게시글 조회
         case list(threshold: Int?, pageSize: Int32 = 25)
-        
+      
         /// 게시글 생성
-        case post
+        case create
         
         /// 게시글 단건 조회
-        case single(boardId: Int)
+        case single(boardId: Int64)
         
         /// 게시글 삭제
-        case delete(boardId: Int)
+        case delete(boardId: Int64)
         
         /// 게시글 좋아요 및 취소
-        case like(boardId: Int)
+        case like(boardId: Int64)
         
         /// 게시글 검색
         case search(keyword: String?, threshold: Int?, pageSize: Int32 = 25)
@@ -175,7 +175,7 @@ enum QappleAPI {
                     .init(key: "pageSize", value: pageSize),
                 ])
                 
-            case .post:
+            case .create:
                 appending()
                 
             case let .single(boardId):

@@ -10,13 +10,13 @@ import QappleRepository
 
 @MainActor
 final class TestHelper {
-
+    
     static let shared = TestHelper()
     private init() {}
-
+    
     /// 액세스 토큰
     private var accessToken = ""
-
+    
     /// 테스트 토큰을 발급합니다.
     func testToken() async throws -> String {
         if accessToken.isEmpty {
