@@ -25,7 +25,7 @@ public enum AdminQuestionAPI: Sendable {
             content: content
         )
         
-        return try await NetworkService.post(url: url, body: request)
+        return try await NetworkService.post(url: url, body: request, accessToken: accessToken)
     }
     
     /// 질문을 삭제하는 API 입니다.
@@ -39,4 +39,15 @@ public enum AdminQuestionAPI: Sendable {
         
         return try await NetworkService.delete(url: url, accessToken: accessToken)
     }
+    
+//    public static func createQuestionWithCSV(
+//        file: Data,
+//        server: Server,
+//        accessToken: String
+//    ) async throws -> Int {
+//        let url = try QappleAPI.AdminQuestion.uploadCSV
+//            .url(from: server)
+//        
+//        return try await NetworkService.postCSV(url: url, csvData: file, accessToken: accessToken)
+//    }
 }

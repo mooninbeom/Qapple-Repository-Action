@@ -42,4 +42,19 @@ struct AdminQuestionAPITests {
         
         dump(deleteResponse)
     }
+    
+//    @Test("Admin 질문 CSV 파일 업로드 테스트")
+//    func uploadQuestionsCSV() async throws {
+//        let token = try await TestHelper.shared.testToken()
+//        let file = Bundle.module.url(forResource: "test", withExtension: ".csv")!
+//        let data = try! Data(contentsOf: file)
+//        
+//        let response = try await AdminQuestionAPI.createQuestionWithCSV(
+//            file: data,
+//            server: .test,
+//            accessToken: TestHelper.shared.testToken()
+//        )
+//        
+//        dump(response)
+//    }
 }
