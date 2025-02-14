@@ -12,7 +12,7 @@ import Testing
 
 struct NotificationAPITests {
     
-    @Test("")
+    @Test("알림 리스트 조회 테스트")
     func fetchNotifications() async throws {
         let response = try await NotificationAPI.fetchNotifications(
             threshold: nil,
