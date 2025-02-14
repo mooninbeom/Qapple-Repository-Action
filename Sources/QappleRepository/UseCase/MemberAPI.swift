@@ -11,8 +11,15 @@ import Foundation
 public enum MemberAPI: Sendable {
     
     /// 테스트용 로컬 로그인 API 입니다.
-    public static func localSignIn(server: Server) async throws -> LocalSignIn {
-        let url = try QappleAPI.Member.localSignIn.url(from: server)
+    public static func localSignIn(
+        testId: String,
+        deviceToken: String,
+        server: Server
+    ) async throws -> LocalSignIn {
+        let url = try QappleAPI.Member.localSignIn(
+            testId: testId,
+            deviceToken: deviceToken
+        ).url(from: server)
         return try await NetworkService.signIn(url: url)
     }
     
