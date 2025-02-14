@@ -113,7 +113,7 @@ public enum MemberAPI: Sendable {
     public static func fetchProfile(
         server: Server,
         accessToken: String
-    ) async throws -> Bool {
+    ) async throws -> Profile {
         let url = try QappleAPI.Member.profile.url(from: server)
         
         return try await NetworkService.get(
@@ -146,7 +146,7 @@ public enum MemberAPI: Sendable {
     public static func resign(
         server: Server,
         accessToken: String
-    ) async throws -> Bool {
+    ) async throws -> Resign {
         let url = try QappleAPI.Member.resign.url(from: server)
         
         return try await NetworkService.get(

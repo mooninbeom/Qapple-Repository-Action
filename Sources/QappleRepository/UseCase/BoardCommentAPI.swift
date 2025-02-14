@@ -79,7 +79,7 @@ public enum BoardCommentAPI {
             commentId: commentId
         )
         
-        return try await NetworkService.post(
+        return try await NetworkService.patch(
             url: url,
             body: request,
             accessToken: accessToken
