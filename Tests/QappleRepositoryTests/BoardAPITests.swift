@@ -67,7 +67,7 @@ struct BoardAPITests {
     func like() async throws {
         let accessToken = try await TestHelper.shared.testToken()
         let response = try await BoardAPI.like(
-            request: .init(boardId: 1),
+            boardId: 1,
             server: .test,
             accessToken: accessToken
         )

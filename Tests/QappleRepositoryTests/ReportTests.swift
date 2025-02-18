@@ -15,7 +15,7 @@ struct ReportTests {
     func reportAnswer() async throws {
         let accessToken = try await TestHelper.shared.testToken()
         let createAnswer = try await AnswerAPI.create(
-            request: .init(answer: "테스트 답변"),
+            content: "테스트 답변",
             questionId: 1,
             server: .test,
             accessToken: accessToken
