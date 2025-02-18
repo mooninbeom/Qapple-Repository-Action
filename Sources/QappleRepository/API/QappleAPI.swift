@@ -21,9 +21,16 @@ enum QappleAPI {
     enum Answer: RawRepresentable, API {
         static let basePath = "answers"
         
+        /// 작성한 답변 조회
         case listOfMine(threshold: Int?, pageSize: Int32 = 25)
+        
+        /// 답변 삭제
         case delete(answerId: Int64)
+        
+        /// 질문에 대한 답변 조회
         case listOfQuestion(questionId: Int64, threshold: String?, pageSize: Int32 = 25)
+        
+        /// 답변 생성
         case create(questionId: Int64)
         
         var rawValue: RawValue {
@@ -67,10 +74,10 @@ enum QappleAPI {
         case localSignIn(testId: String, deviceToken: String)
         
         /// 마이페이지 프로필 조회
-        case myPage
+        case profile
         
         /// 마이페이지 프로필 수정
-        case myPageEdit
+        case updateProfile
         
         /// 닉네임 중복 체크
         case nicknameCheck(nickname: String)
@@ -110,10 +117,10 @@ enum QappleAPI {
                     .init(key: "deviceToken", value: deviceToken)
                 ])
                 
-            case .myPage:
+            case .profile:
                 appending(baseString: "mypage")
                 
-            case .myPageEdit:
+            case .updateProfile:
                 appending(baseString: "mypage")
                 
             case let .nicknameCheck(nickname):
@@ -142,11 +149,22 @@ enum QappleAPI {
     enum Board: RawRepresentable, API {
         static let basePath = "boards"
         
+        /// 게시글 조회
         case list(threshold: Int?, pageSize: Int32 = 25)
+      
+        /// 게시글 생성
         case create
+        
+        /// 게시글 단건 조회
         case single(boardId: Int64)
+        
+        /// 게시글 삭제
         case delete(boardId: Int64)
+        
+        /// 게시글 좋아요 및 취소
         case like(boardId: Int64)
+        
+        /// 게시글 검색
         case search(keyword: String?, threshold: Int?, pageSize: Int32 = 25)
         
         var rawValue: RawValue {
@@ -184,7 +202,10 @@ enum QappleAPI {
     enum Question: RawRepresentable, API {
         static let basePath = "questions"
         
+        /// 메인 질문 조회
         case listOfMain
+      
+        /// 모든 질문 조회
         case list(threshold: Int?, pageSize: Int32 = 25)
         
         var rawValue: RawValue {
@@ -227,10 +248,17 @@ enum QappleAPI {
     enum BoardComment: RawRepresentable, API {
         static let basePath = "board-comments"
         
-        case list(boardId: Int, threshold: Int?, pageSize: Int32 = 25)
-        case delete(commentId: Int)
-        case post(boardId: Int)
-        case like(commentId: Int)
+        /// 게시글 댓글 리스트 조회
+        case list(boardId: Int64, threshold: Int?, pageSize: Int32 = 25)
+        
+        /// 게시글 댓글 삭제
+        case delete(commentId: Int64)
+        
+        /// 게시글 댓글 생성
+        case create(boardId: Int64)
+        
+        /// 게시글 댓글 좋아요 및 취소
+        case like(commentId: Int64)
         
         var rawValue: RawValue {
             switch self {
@@ -243,7 +271,7 @@ enum QappleAPI {
             case let .delete(commentId):
                 appending(baseString: "\(commentId)")
                 
-            case let .post(boardId):
+            case let .create(boardId):
                 appending(baseString: "board/\(boardId)")
                 
             case let .like(commentId):
@@ -257,6 +285,7 @@ enum QappleAPI {
     enum Notification: RawRepresentable, API {
         static let basePath = "notifications"
         
+        /// 알림 리스트 조회
         case list(threshold: Int?, pageSize: Int32 = 25)
         
         var rawValue: RawValue {
@@ -276,8 +305,13 @@ enum QappleAPI {
     enum Reports: RawRepresentable, API {
         static let basePath = "reports"
         
+        /// 게시글 신고
         case board
+        
+        /// 게시글 댓글 신고
         case boardComment
+        
+        /// 답변 신고
         case answer
         
         var rawValue: RawValue {
