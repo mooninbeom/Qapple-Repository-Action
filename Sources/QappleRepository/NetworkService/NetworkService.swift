@@ -47,6 +47,11 @@ enum NetworkService {
         let (data, response) = try await request(url: url, method: .DELETE, accessToken: accessToken)
         return try decodeResponse(data: data, response: response)
     }
+    
+//    static func postCSV(url: URL, csvData: Data, accessToken: String = "") async throws -> Int {
+//        let (data, response) = try await requestFormData(url: url, data: csvData, method: .POST, accessToken: accessToken)
+//        return try decodeResponse(data: data, response: response)
+//    }
 }
 
 // MARK: - URLSession
@@ -73,6 +78,30 @@ extension NetworkService {
             throw NetworkError.urlRequestFailure(urlString: url.absoluteString)
         }
     }
+    
+//    static func requestFormData(url: URL, data: Data, method: HTTPMethod, accessToken: String) async throws -> (Data, URLResponse) {
+//        do {
+//            let accessToken = "Bearer \(accessToken)"
+//            let boundary = "Boundary-\(UUID().uuidString)"
+//            
+//            var request = URLRequest(url: url)
+//            request.httpMethod = method.rawValue
+//            request.setValue(accessToken, forHTTPHeaderField: "Authorization")
+//            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+//            
+//            var body = Data()
+//            body.append("--\(boundary)\r\n".data(using: .utf8)!)
+//            body.append("Content-Disposition: form-data; name=\"file\"; filename=\"\("file.csv")\"\r\n".data(using: .utf8)!)
+//            body.append("Content-Type: text/csv\r\n\r\n".data(using: .utf8)!)
+//            body.append(data)
+//            body.append("\r\n".data(using: .utf8)!)
+//            body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+//            
+//            return try await URLSession.shared.upload(for: request, from: body)
+//        } catch {
+//            throw NetworkError.urlRequestFailure(urlString: url.absoluteString)
+//        }
+//    }
 }
 
 // MARK: - Status Code
