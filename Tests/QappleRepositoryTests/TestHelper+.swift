@@ -26,12 +26,10 @@ final class TestHelper {
                 server: .test
             )
             let localSignUp = try await MemberAPI.signUp(
-                request: .init(
-                    signUpToken: localSignIn.refreshToken,
-                    email: "email",
-                    nickname: "nickname",
-                    deviceToken: "deviceToken"
-                ),
+                signUpToken: localSignIn.refreshToken,
+                email: "email",
+                nickname: "nickname",
+                deviceToken: "deviceToken",
                 server: .test
             )
             return localSignUp.accessToken ?? ""

@@ -29,12 +29,10 @@ struct MemberAPITests {
             server: .test
         ).refreshToken
         let response = try await MemberAPI.signUp(
-            request: .init(
-                signUpToken: refreshToken,
-                email: "email",
-                nickname: "nickname",
-                deviceToken: "deviceToken"
-            ),
+            signUpToken: refreshToken,
+            email: "email",
+            nickname: "nickname",
+            deviceToken: "deviceToken",
             server: .test
         )
         dump(response)
