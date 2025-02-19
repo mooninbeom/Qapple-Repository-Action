@@ -21,6 +21,17 @@ struct QuestionAPITests {
             accessToken: TestHelper.shared.testToken()
         )
         
+        if response.hasNext {
+            let pagination = try await QuestionAPI.fetchQuestionList(
+                threshold: response.threshold,
+                pageSize: 25,
+                server: .test,
+                accessToken: TestHelper.shared.testToken()
+            )
+            
+            #expect(response.content.first!.questionId != pagination.content.first!.questionId)
+        }
+        
         dump(response)
     }
     
