@@ -13,7 +13,7 @@ struct AnswerAPITests {
     
     @Test("내가 작성한 답변 리스트 테스트")
     func fetchListOfMine() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
+        let accessToken = try await TestHelper.accessToken()
         let _ = try await AnswerAPI.create(
             content: "테스트 답변",
             questionId: 1,
@@ -31,7 +31,7 @@ struct AnswerAPITests {
     
     @Test("답변 삭제 테스트")
     func delete() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
+        let accessToken = try await TestHelper.accessToken()
         let createAnswer = try await AnswerAPI.create(
             content: "테스트 답변",
             questionId: 1,
@@ -53,7 +53,7 @@ struct AnswerAPITests {
             threshold: nil,
             pageSize: 30,
             server: .test,
-            accessToken: TestHelper.shared.testToken()
+            accessToken: TestHelper.accessToken()
         )
         dump(response)
     }
@@ -64,7 +64,7 @@ struct AnswerAPITests {
             content: "테스트 답변",
             questionId: 1,
             server: .test,
-            accessToken: TestHelper.shared.testToken()
+            accessToken: TestHelper.accessToken()
         )
         dump(response)
     }

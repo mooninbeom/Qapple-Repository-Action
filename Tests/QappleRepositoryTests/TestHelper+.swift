@@ -8,17 +8,10 @@
 import Foundation
 import QappleRepository
 
-@MainActor
-final class TestHelper {
-    
-    static let shared = TestHelper()
-    private init() {}
-    
-    /// 액세스 토큰
-    private var accessToken = ""
+enum TestHelper {
     
     /// 테스트 토큰을 발급합니다.
-    func testToken() async throws -> String {
+    static func accessToken() async throws -> String {
         let localSignIn = try await MemberAPI.localSignIn(
             testId: "TEST_ID_\(Date.now.description)",
             deviceToken: "TEST_DEVICE_TOKEN",

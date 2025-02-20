@@ -18,7 +18,7 @@ struct QuestionAPITests {
             threshold: nil,
             pageSize: 25,
             server: .test,
-            accessToken: TestHelper.shared.testToken()
+            accessToken: TestHelper.accessToken()
         )
         
         if response.hasNext {
@@ -26,7 +26,7 @@ struct QuestionAPITests {
                 threshold: response.threshold,
                 pageSize: 25,
                 server: .test,
-                accessToken: TestHelper.shared.testToken()
+                accessToken: TestHelper.accessToken()
             )
             
             #expect(response.content.first!.questionId != pagination.content.first!.questionId)
@@ -39,7 +39,7 @@ struct QuestionAPITests {
     func fetchMainQuestion() async throws {
         let response = try await QuestionAPI.fetchMainQuestion(
             server: .test,
-            accessToken: TestHelper.shared.testToken()
+            accessToken: TestHelper.accessToken()
         )
         
         dump(response)
