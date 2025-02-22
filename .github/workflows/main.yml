@@ -1,0 +1,42 @@
+# This workflow will build a Swift project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+
+name: Package Test
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Swift
+      uses: swift-actions/setup-swift@v2.2.0
+      with:
+        swift-version: "6"
+        
+    - name: Build💻
+      run: swift build -v
+
+  test:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Swift
+      uses: swift-actions/setup-swift@v2.2.0
+      with:
+        swift-version: "6"
+
+    - name: Test🦉
+      run: TEST_URL=${{secrets.TEST_URL}} PRODUCTION_URL=${{secrets.PRODUCTION_URL}} PORT_NUM=${{secrets.PORT_NUM}} swift test -v
+  
