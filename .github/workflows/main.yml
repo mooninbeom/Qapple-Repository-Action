@@ -38,5 +38,5 @@ jobs:
         swift-version: "6"
 
     - name: Test🦉
-      run: swift test -v
+      run: TEST_URL=${{secrets.TEST_URL}} PRODUCTION_URL=${{secrets.PRODUCTION_URL}} PORT_NUM=${{secrets.PORT_NUM}} swift test -v
   
